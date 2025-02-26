@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 
-class CompassScreen extends StatefulWidget {
+class TasbehPage extends StatefulWidget {
   @override
-  _CompassScreenState createState() => _CompassScreenState();
+  _TasbehPageState createState() => _TasbehPageState();
 }
 
-class _CompassScreenState extends State<CompassScreen>
+class _TasbehPageState extends State<TasbehPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

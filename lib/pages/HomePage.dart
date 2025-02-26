@@ -162,7 +162,9 @@ class _HomePageState extends State<HomePage> {
     Color backgroundColor;
     Color dayOrNightColor = Colors.black;
     String imageAsset;
-
+    Size size = MediaQuery
+        .of(context)
+        .size;
     int hour = DateTime.now().hour;
 
     if (hour >= 6 && hour < 12) {
@@ -181,103 +183,413 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageAsset),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 0, left: 20, right: 15),
-              width: double.infinity,
-              child: Column(
+      backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(
+          backgroundColor: Colors.grey.shade100,
+          title: Container(
+          padding: EdgeInsets.only(top: 0, left: 10, right: 5),
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20),
-                  Row(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Samarqand",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: dayOrNightColor,
-                            ),
-                          ),
-                          Text(
-                            "Bugun ${date.day} ${getMonth(date.month)}, ${date.year} \n${getWeekdays(date.weekday)} ",
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: dayOrNightColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (builder) => Fullcalendar(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: CircleBorder(),
+                      Text(
+                        "${date.day} ${getMonth(date.month)}, ${date.year} ${getWeekdays(date.weekday)} ",
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        child: Icon(Icons.calendar_month, size: 24),
+                      ),
+                      Text(
+                        "Samarqand",
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.indigo,
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 250),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: Column(
-                children: [
-                  check
-                      ? Column(
-                        children: [
-                          SizedBox(height: 20),
-                          time_card(
-                            "Bomdod (saharlik)",
-                            time.tongSaharlik.toString(),
-                          ),
-                          time_card("Quyosh ", time.quyosh.toString()),
-                          time_card("Peshin", time.peshin.toString()),
-                          time_card("Asr", time.asr.toString()),
-                          time_card(
-                            "Shom (iftorlik)",
-                            time.shomIftor.toString(),
-                          ),
-                          time_card("Xufton", time.hufton.toString()),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (builder) => Fullcalendar(),
+                        ),
+                      );
+                    },
 
-                          SizedBox(height: 20),
-                        ],
-                      )
-                      : SizedBox(),
+                    icon: Icon(Icons.calendar_month, size: 24,color: Colors.blue,),
+                  ),
                 ],
               ),
+            ],
+          ),
+        )
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.grey.shade100,
+        child: ListView(
+          children: [
+            SizedBox(height: 150),
+            Column(
+              children: [
+                check
+                    ? Column(
+                  children: [
+                    SizedBox(height: 20),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: size.width * 0.38,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            color: Color(0xffccaefb),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 6,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(height: 10,),
+                              Container(
+                                  width: double.infinity,
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      "Bomdod ('saharlik')", maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                  )),
+                              Container(
+                                  width: double.infinity,
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      time.tongSaharlik.toString(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.indigo),),
+                                  )),
+
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Image.asset(
+                                  "assets/icon/moon.png", width: 70,
+                                  height: 50,),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                            width: size.width * 0.38,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: Color(0xfffbdb7b),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 10,),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text("Quyosh", style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                    )),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        time.quyosh.toString(),
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black45),),
+                                    )),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "assets/icon/sun.png", width: 60,
+                                    height: 50,),
+                                )
+                              ],
+                            )
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                            width: size.width * 0.38,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: Color(0xffdfc065),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 10,),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text("Peshin", style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                    )),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        time.peshin.toString(),
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),),
+                                    )),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "assets/icon/cloud.png", width: 60,
+                                    height: 50,),
+                                )
+                              ],
+                            )
+                        ),
+                        Container(
+                            width: size.width * 0.38,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: Color(0xffA7A9F5),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 10,),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text("Asr", style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                    )),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        time.asr.toString(), style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black45),),
+                                    )),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "assets/icon/day_night.png", width: 60,
+                                    height: 50,),
+                                )
+                              ],
+                            )
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                            width: size.width * 0.38,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: Color(0xff6457FA),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 10,),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        "Shom ('ifrorlik')", maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black),),
+                                    )),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        time.shomIftor.toString(), style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.amber),),
+                                    )),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "assets/icon/cloud_night.png", width: 60,
+                                    height: 50,),
+                                )
+                              ],
+                            )
+                        ),
+                        Container(
+                            width: size.width * 0.38,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: Color(0xff7D5B8A),
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 10,),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text("Xufton", style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),),
+                                    )),
+                                Container(
+                                    width: double.infinity,
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12.0),
+                                      child: Text(
+                                        time.hufton.toString(), style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.yellowAccent),),
+                                    )),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "assets/icon/night.png", width: 60,
+                                    height: 50,),
+                                )
+                              ],
+                            )
+                        ),
+
+                      ],
+                    ),
+
+                    SizedBox(height: 20),
+                  ],
+                )
+                    : SizedBox(),
+              ],
             ),
           ],
         ),

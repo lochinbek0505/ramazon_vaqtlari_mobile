@@ -19,8 +19,8 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> pages = [
     HomePage(),
     Duopage(),
-    QiblaCompassPage(),
-    CompassScreen(),
+    TasbehPage(),
+    QiblaPage(),
   ];
 
   void onTap(int index) {
@@ -42,11 +42,11 @@ class _MainPageState extends State<MainPage> {
         items: [
           Image.asset("assets/icon/home.png",width: 35,),
           Image.asset("assets/icon/duo.png",width: 30,),
+          Image.asset("assets/icon/tasbih.png", width: 30,),
           Image.asset("assets/icon/qibla.png",width: 30,),
-          Image.asset("assets/icon/tasbih.png",width: 30,),
         ],
         onTap: onTap,
-        backgroundColor: Colors.white.withOpacity(0.3),
+        backgroundColor: Colors.grey.shade100,
         color: Colors.grey.shade300,
         index: selectIndex,
         height: 60,
