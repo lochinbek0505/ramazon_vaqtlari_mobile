@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  android_intent_plus:
+    dependency: "direct main"
+    description:
+      name: android_intent_plus
+      sha256: dfc1fd3a577205ae8f11e990fb4ece8c90cceabbee56fcf48e463ecf0bd6aae3
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.0"
   async:
     dependency: transitive
     description:
@@ -392,6 +400,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  pausable_timer:
+    dependency: transitive
+    description:
+      name: pausable_timer
+      sha256: "6ef1a95441ec3439de6fb63f39a011b67e693198e7dae14e20675c3c00e86074"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+3"
   permission_handler:
     dependency: "direct main"
     description:
@@ -461,6 +477,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  slide_countdown:
+    dependency: "direct main"
+    description:
+      name: slide_countdown
+      sha256: "363914f96389502467d4dc9c0f26e88f93df3d8e37de2d5ff05b16d981fe973d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   smooth_page_indicator:
     dependency: "direct main"
     description:
@@ -533,6 +557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.4"
+  timer_count_down:
+    dependency: "direct main"
+    description:
+      name: timer_count_down
+      sha256: d025d408c2654e497ca0bd4bde014bd7509d4c6397af4ed23a0f9b692bbcf337
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
   typed_data:
     dependency: transitive
     description:

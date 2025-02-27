@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namoz_time_mobile/pages/AlarmTestPage.dart';
 import 'package:namoz_time_mobile/pages/MainPage.dart';
 import 'package:namoz_time_mobile/pages/SplashPage.dart';
 

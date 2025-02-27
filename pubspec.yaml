@@ -44,6 +44,9 @@ dependencies:
   url_launcher: ^6.3.1
   adhan_dart: ^1.1.2
   flutter_compass: ^0.8.1
+  android_intent_plus: ^5.3.0
+  timer_count_down: ^2.2.2
+  slide_countdown: ^2.0.2
 
 dev_dependencies:
   flutter_test:

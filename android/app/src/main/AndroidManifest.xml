@@ -4,6 +4,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+<!--    android manifest ga set alarm qo'shilishi kerak-->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
 
     <application

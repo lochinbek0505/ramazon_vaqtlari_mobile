@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:android_intent_plus/android_intent.dart';
+import 'package:android_intent_plus/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 import '../model/namoz_model.dart';
 import 'FullCalendar.dart';
@@ -24,6 +27,27 @@ class _HomePageState extends State<HomePage> {
   //bugungi kungi namoz vaqtlarini o'zida saqlaydi
   late Times time;
   static const platform = MethodChannel('alarm_channel');
+
+  void _setAlarm(int hour, int minute) async {
+    if (hour == null && minute == null) {
+      final intent = AndroidIntent(
+        action: 'android.intent.action.SET_ALARM',
+        arguments: <String, dynamic>{
+          'android.intent.extra.alarm.HOUR': hour,
+          'android.intent.extra.alarm.MINUTES': minute,
+          'android.intent.extra.alarm.MESSAGE': 'Flutter budilnik ⏰',
+          'android.intent.extra.alarm.SKIP_UI': false,
+        },
+        flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
+      );
+
+      await intent.launch();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Iltimos, vaqtni tanlang!')),
+      );
+    }
+  }
 
   //bu funksiya json file dagi ma'lumotni NamozModel ga o'girib beryabdi
   Future<void> getDataFromJson() async {
@@ -139,53 +163,107 @@ class _HomePageState extends State<HomePage> {
   }
 
   var check = false;
-
+  var time_vaqt = "";
+  var now_time = DateTime.now();
+  var hour = 0;
+  var minute = 0;
   //bu yerda boshlag'ich qiymatlar berilyabdi va model initsilizatsiya qilinyabdi
   @override
   void initState() {
     super.initState();
     //hozirgi sanani olyabman
     date = DateTime.now();
-
     //bu yerda json file dan o'girilgan data ni aniqlab olyabmiz
     getDataFromJson().then((_) {
       setState(() {
         //bugungi kundagi namoz vaqtlarini aniqlashtirib olish
         time = getCurrentTimes(date.day)!;
         check = !check;
+        countDown();
       });
     });
   }
 
+  var time_name = "";
+
+  void countDown() {
+    var _timeSaharlik = parseTimeOfDay(
+        time.tongSaharlik.toString());
+    var _timeIftorlik = parseTimeOfDay(
+        time.shomIftor.toString());
+    print(_timeSaharlik);
+    time_vaqt = "";
+    now_time = DateTime.now();
+    hour = 0;
+    minute = 0;
+
+    if (_timeSaharlik.hour >= now_time.hour) {
+      if (_timeSaharlik.minute > now_time.minute) {
+        time_name = "Saharlik vaqti";
+        time_vaqt = time.tongSaharlik.toString();
+        hour = _timeSaharlik.hour - now_time.hour;
+        minute = _timeSaharlik.minute - now_time.minute;
+      }
+      else {
+        time_name = "Iftorlik vaqti";
+        time_vaqt = time.shomIftor.toString();
+        var sek = (_timeIftorlik.hour * 3600 +
+            _timeIftorlik.minute * 60) -
+            (now_time.hour * 3600 + now_time.minute * 60);
+        hour = sek ~/ 3600;
+        minute = (sek % 3600) ~/ 60;
+        print("$hour $minute");
+      }
+    }
+    else if (_timeIftorlik.hour < now_time.hour) {
+      time_name = "Saharlik vaqti";
+      time_vaqt = time.tongSaharlik.toString();
+      var sek = 24 * 3600 -
+          (now_time.hour * 3600 + now_time.minute * 60 +
+              now_time.second);
+      hour = _timeSaharlik.hour + sek ~/ 3600;
+      print("${_timeIftorlik.hour} ${_timeIftorlik.minute}");
+      minute = _timeSaharlik.minute + (sek % 3600) ~/ 60;
+    }
+    else {
+      if (_timeIftorlik.minute > now_time.minute) {
+        time_name = "Iftorlik vaqti";
+        time_vaqt = time.shomIftor.toString();
+        hour = _timeIftorlik.hour - now_time.hour;
+        minute = _timeIftorlik.minute - now_time.minute
+        ;
+        print("$hour $minute");
+      } else {
+        time_name = "Saharlik vaqti";
+        time_vaqt = time.tongSaharlik.toString();
+        var sek = 24 * 3600 -
+            (now_time.hour * 3600 + now_time.minute * 60 +
+                now_time.second);
+        hour = _timeSaharlik.hour + sek ~/ 3600;
+        print("${_timeIftorlik.hour} ${_timeIftorlik.minute}");
+        minute = _timeSaharlik.minute + (sek % 3600) ~/ 60;
+      }
+    }
+  }
+
+  TimeOfDay parseTimeOfDay(String time) {
+    final parts = time.trim().split(':'); // ["03", "58"]
+    final hour = int.parse(parts[0]);
+    final minute = int.parse(parts[1]);
+    return TimeOfDay(hour: hour, minute: minute);
+  }
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor;
-    Color dayOrNightColor = Colors.black;
-    String imageAsset;
     Size size = MediaQuery
         .of(context)
         .size;
-    int hour = DateTime.now().hour;
 
-    if (hour >= 6 && hour < 12) {
-      imageAsset = "assets/images/sahar_time_image.png";
-      backgroundColor = Color(0xff97E2Fd);
-    } else if (hour >= 12 && hour < 17) {
-      imageAsset = "assets/images/sunrise_time_image.png";
-      backgroundColor = Color(0xffE1EBDA);
-    } else if (hour >= 17 && hour < 20) {
-      imageAsset = "assets/images/afternoon_time_image.png";
-      backgroundColor = Color(0xffCC7E3B);
-    } else {
-      imageAsset = "assets/images/night_time_image.png";
-      backgroundColor = Color(0xff1E1A43);
-      dayOrNightColor = Colors.white;
-    }
+
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Colors.indigoAccent,
           title: Container(
           padding: EdgeInsets.only(top: 0, left: 10, right: 5),
           width: double.infinity,
@@ -205,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                         style: GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       Text(
@@ -213,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigo,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -228,7 +306,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
 
-                    icon: Icon(Icons.calendar_month, size: 24,color: Colors.blue,),
+                    icon: Icon(
+                      Icons.calendar_month, size: 24, color: Colors.white,),
                   ),
                 ],
               ),
@@ -241,8 +320,64 @@ class _HomePageState extends State<HomePage> {
         height: double.infinity,
         color: Colors.grey.shade100,
         child: ListView(
+
           children: [
-            SizedBox(height: 150),
+            SizedBox(height: 15,),
+            Container(
+              width: size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(width: 35,),
+
+                  Text(time_name,
+                    style: TextStyle(fontSize: 25,
+                        color: Colors.black),),
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.alarm, color: Colors.blue,)),
+
+                ],
+              ),
+
+            ),
+            Center(
+              child: Text(time_vaqt,
+                style: TextStyle(fontSize: 30, color: Colors.black),),
+            ),
+            SizedBox(height: 10,),
+            Center(
+              child: SlideCountdown(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.indigoAccent,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6,
+                        offset: Offset(0, 2),
+                      ),
+                    ]
+                ),
+
+                onDone: () {
+                  print("ONDONE");
+                  setState(() {
+                    countDown();
+                  });
+                },
+                style: TextStyle(
+                  fontSize: 21,
+                  color: Colors.white,
+                ),
+                separatorStyle: TextStyle(
+                  fontSize: 21,
+                  color: Colors.white,
+                ),
+                duration: Duration(hours: hour, minutes: minute),
+              ),),
+            SizedBox(height: 20),
             Column(
               children: [
                 check
@@ -501,7 +636,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        "Shom ('ifrorlik')", maxLines: 1,
+                                        "Shom ('iftorlik')", maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             fontSize: 17,
