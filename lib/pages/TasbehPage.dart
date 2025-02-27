@@ -98,6 +98,7 @@ class _TasbehPageState extends State<TasbehPage>
               animation: _controller,
               builder: (context, child) {
                 return Transform.rotate(
+                  alignment: Alignment.center,
                   angle: _animation.value * (pi / 180),
                   child: child,
                 );

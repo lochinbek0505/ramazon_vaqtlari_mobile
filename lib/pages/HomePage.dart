@@ -167,6 +167,7 @@ class _HomePageState extends State<HomePage> {
   var now_time = DateTime.now();
   var hour = 0;
   var minute = 0;
+  late TimeOfDay timeOfDay;
   //bu yerda boshlag'ich qiymatlar berilyabdi va model initsilizatsiya qilinyabdi
   @override
   void initState() {
@@ -200,12 +201,15 @@ class _HomePageState extends State<HomePage> {
     if (_timeSaharlik.hour >= now_time.hour) {
       if (_timeSaharlik.minute > now_time.minute) {
         time_name = "Saharlik vaqti";
+        timeOfDay = _timeSaharlik;
         time_vaqt = time.tongSaharlik.toString();
         hour = _timeSaharlik.hour - now_time.hour;
         minute = _timeSaharlik.minute - now_time.minute;
       }
-      else {
+      else if (_timeSaharlik.hour == now_time.hour) {
         time_name = "Iftorlik vaqti";
+        timeOfDay = _timeIftorlik;
+
         time_vaqt = time.shomIftor.toString();
         var sek = (_timeIftorlik.hour * 3600 +
             _timeIftorlik.minute * 60) -
@@ -217,6 +221,12 @@ class _HomePageState extends State<HomePage> {
     }
     else if (_timeIftorlik.hour < now_time.hour) {
       time_name = "Saharlik vaqti";
+      time = getCurrentTimes(date.day + 1)!;
+
+      _timeSaharlik = parseTimeOfDay(
+          time.tongSaharlik.toString());
+      timeOfDay = _timeSaharlik;
+
       time_vaqt = time.tongSaharlik.toString();
       var sek = 24 * 3600 -
           (now_time.hour * 3600 + now_time.minute * 60 +
@@ -226,15 +236,14 @@ class _HomePageState extends State<HomePage> {
       minute = _timeSaharlik.minute + (sek % 3600) ~/ 60;
     }
     else {
-      if (_timeIftorlik.minute > now_time.minute) {
-        time_name = "Iftorlik vaqti";
-        time_vaqt = time.shomIftor.toString();
-        hour = _timeIftorlik.hour - now_time.hour;
-        minute = _timeIftorlik.minute - now_time.minute
-        ;
-        print("$hour $minute");
-      } else {
+      if (_timeIftorlik.hour == now_time.hour &&
+          _timeIftorlik.minute <= now_time.minute) {
+        time = getCurrentTimes(date.day + 1)!;
+
+        _timeSaharlik = parseTimeOfDay(
+            time.tongSaharlik.toString());
         time_name = "Saharlik vaqti";
+        timeOfDay = _timeSaharlik;
         time_vaqt = time.tongSaharlik.toString();
         var sek = 24 * 3600 -
             (now_time.hour * 3600 + now_time.minute * 60 +
@@ -242,6 +251,16 @@ class _HomePageState extends State<HomePage> {
         hour = _timeSaharlik.hour + sek ~/ 3600;
         print("${_timeIftorlik.hour} ${_timeIftorlik.minute}");
         minute = _timeSaharlik.minute + (sek % 3600) ~/ 60;
+      }
+      else {
+        time_name = "Iftorlik vaqti";
+        timeOfDay = _timeIftorlik;
+
+        time_vaqt = time.shomIftor.toString();
+        hour = _timeIftorlik.hour - now_time.hour;
+        minute = _timeIftorlik.minute - now_time.minute
+        ;
+        print("$hour $minute");
       }
     }
   }
@@ -334,8 +353,11 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 25,
                         color: Colors.black),),
                   IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.alarm, color: Colors.blue,)),
+                      onPressed: () {
+                        setAlarm("$time_name keldi", timeOfDay.hour,
+                            timeOfDay.minute);
+                      },
+                      icon: Icon(Icons.alarm, color: Colors.blue,size: 30,)),
 
                 ],
               ),
