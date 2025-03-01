@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:namoz_time_mobile/pages/LocatePage.dart';
 import 'package:namoz_time_mobile/pages/MainPage.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -159,7 +160,7 @@ class _PageviewpageState extends State<Pageviewpage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (builder) => MainPage(),
+                              builder: (builder) => ProvincePage(),
                             ),
                           );
                         },

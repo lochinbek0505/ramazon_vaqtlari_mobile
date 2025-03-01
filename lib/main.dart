@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namoz_time_mobile/pages/AlarmTestPage.dart';
-import 'package:namoz_time_mobile/pages/MainPage.dart';
+import 'package:namoz_time_mobile/pages/LocatePage.dart';
 import 'package:namoz_time_mobile/pages/SplashPage.dart';
 
 void main() {
@@ -15,12 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Ramazon taqvimi',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Color(0xffffffff)),
         useMaterial3: true,
       ),
-      home: MainPage(),
+      home: Splashpage(),
     );
   }
 }

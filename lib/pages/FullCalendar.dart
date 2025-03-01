@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/namoz_model.dart';
 import '../widgets/RamadanTimeCard.dart';
@@ -17,17 +18,25 @@ class _FullcalendarState extends State<Fullcalendar> {
   late NamozTimeModel model;
   late DateTime date;
   var check = false;
+
+
+  Future<String?> _loadSelection() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? district = prefs.getString('selected_district');
+    return district;
+  }
+
+
   Future<void> getDataFromJson() async {
+    var path=await _loadSelection();
     String data = await rootBundle.loadString(
-      'assets/json/samarqand.json',
+      path!,
     );
     setState(() {
       var list = jsonDecode(data);
       model = NamozTimeModel.fromJson(list);
     });
   }
-
-
   @override
   void initState() {
     super.initState();

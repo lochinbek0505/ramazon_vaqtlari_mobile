@@ -5,6 +5,7 @@ import 'package:android_intent_plus/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../model/namoz_model.dart';
@@ -20,7 +21,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //bu json dan o'qilgan to'liq ma'lumotni o'zida saqlaydi
   late NamozTimeModel model;
-
+  Future<String?> _loadSelection() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? district = prefs.getString('selected_district');
+    return district;
+  }
   // ayni damdagi vaqtni o'zida saqlaydi
   late DateTime date;
 
@@ -51,8 +56,9 @@ class _HomePageState extends State<HomePage> {
 
   //bu funksiya json file dagi ma'lumotni NamozModel ga o'girib beryabdi
   Future<void> getDataFromJson() async {
+    var path=await _loadSelection();
     String data = await rootBundle.loadString(
-      'assets/json/samarqand.json',
+      path!,
     );
     setState(() {
       var list = jsonDecode(data);

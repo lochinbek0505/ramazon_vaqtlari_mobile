@@ -12,82 +12,12 @@ class RamadanTimeCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 25),
-      child:
-          size.width < 600
-              ? Container(
-                width: size.width * 0.95,
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.indigoAccent, // Qora fon
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 8,
-                      spreadRadius: 2,
-                      offset: Offset(2, 4),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Sana",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "${time.kun} Ramazon 1446",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                          ),
-                        ),
-                        Text(
-                          "${int.parse(time.kun!) > 10 ? time.kun : "0${time.kun}"} / 03 / 2025",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Colors.white,
-                      thickness: 0.8,
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TimeColumn(
-                          icon: Icons.wb_sunny_outlined,
-                          title: "Saharlik",
-                          time: time.quyosh.toString(),
-                        ),
-                        VerticalDivider(color: Colors.white, width: 2),
-                        TimeColumn(
-                          icon: Icons.nights_stay_outlined,
-                          title: "Iftorlik",
-                          time: time.xufton.toString(),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-              : Container(
+      child: Container(
                 width: size.width * 0.8,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.indigoAccent, // Qora fon
+                  // color: Color(0xff4CAF50),
+                  gradient: LinearGradient(colors: [Color(0xff4A90E2),Color(0xff1ABC9C)]),// Qora fon
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
