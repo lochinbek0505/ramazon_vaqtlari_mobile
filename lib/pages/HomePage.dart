@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //bu json dan o'qilgan to'liq ma'lumotni o'zida saqlaydi
-  late NamozModel model;
+  late NamozTimeModel model;
 
   // ayni damdagi vaqtni o'zida saqlaydi
   late DateTime date;
@@ -52,19 +52,22 @@ class _HomePageState extends State<HomePage> {
   //bu funksiya json file dagi ma'lumotni NamozModel ga o'girib beryabdi
   Future<void> getDataFromJson() async {
     String data = await rootBundle.loadString(
-      'assets/json/namoz_vaqtlari.json',
+      'assets/json/samarqand.json',
     );
     setState(() {
       var list = jsonDecode(data);
-      model = NamozModel.fromJson(list);
+      model = NamozTimeModel.fromJson(list);
     });
   }
 
   //ayni damdagi namoz vaqtini aniqlab beryabdi
   Times? getCurrentTimes(int day) {
-    for (DataList data in model.dataListList!) {
-      if (day == data.day) {
-        var times = data.times!;
+    for (Times data in model.timesList!) {
+      print("$day ${data.kun}");
+      if (day.toString() == data.kun) {
+
+        var times = data!;
+        print(times.xufton);
         return times;
       }
     }
@@ -169,6 +172,8 @@ class _HomePageState extends State<HomePage> {
   var minute = 0;
   late TimeOfDay timeOfDay;
   //bu yerda boshlag'ich qiymatlar berilyabdi va model initsilizatsiya qilinyabdi
+
+
   @override
   void initState() {
     super.initState();
@@ -177,6 +182,7 @@ class _HomePageState extends State<HomePage> {
     //bu yerda json file dan o'girilgan data ni aniqlab olyabmiz
     getDataFromJson().then((_) {
       setState(() {
+        print(model.timesList![0].xufton);
         //bugungi kundagi namoz vaqtlarini aniqlashtirib olish
         time = getCurrentTimes(date.day)!;
         check = !check;
@@ -189,9 +195,9 @@ class _HomePageState extends State<HomePage> {
 
   void countDown() {
     var _timeSaharlik = parseTimeOfDay(
-        time.tongSaharlik.toString());
+        time.quyosh.toString());
     var _timeIftorlik = parseTimeOfDay(
-        time.shomIftor.toString());
+        time.xufton.toString());
     print(_timeSaharlik);
     time_vaqt = "";
     now_time = DateTime.now();
@@ -202,7 +208,7 @@ class _HomePageState extends State<HomePage> {
       if (_timeSaharlik.minute > now_time.minute) {
         time_name = "Saharlik vaqti";
         timeOfDay = _timeSaharlik;
-        time_vaqt = time.tongSaharlik.toString();
+        time_vaqt = time.quyosh.toString();
         hour = _timeSaharlik.hour - now_time.hour;
         minute = _timeSaharlik.minute - now_time.minute;
       }
@@ -210,7 +216,7 @@ class _HomePageState extends State<HomePage> {
         time_name = "Iftorlik vaqti";
         timeOfDay = _timeIftorlik;
 
-        time_vaqt = time.shomIftor.toString();
+        time_vaqt = time.xufton.toString();
         var sek = (_timeIftorlik.hour * 3600 +
             _timeIftorlik.minute * 60) -
             (now_time.hour * 3600 + now_time.minute * 60);
@@ -224,10 +230,10 @@ class _HomePageState extends State<HomePage> {
       time = getCurrentTimes(date.day + 1)!;
 
       _timeSaharlik = parseTimeOfDay(
-          time.tongSaharlik.toString());
+          time.quyosh.toString());
       timeOfDay = _timeSaharlik;
 
-      time_vaqt = time.tongSaharlik.toString();
+      time_vaqt = time.quyosh.toString();
       var sek = 24 * 3600 -
           (now_time.hour * 3600 + now_time.minute * 60 +
               now_time.second);
@@ -241,10 +247,10 @@ class _HomePageState extends State<HomePage> {
         time = getCurrentTimes(date.day + 1)!;
 
         _timeSaharlik = parseTimeOfDay(
-            time.tongSaharlik.toString());
+            time.quyosh.toString());
         time_name = "Saharlik vaqti";
         timeOfDay = _timeSaharlik;
-        time_vaqt = time.tongSaharlik.toString();
+        time_vaqt = time.quyosh.toString();
         var sek = 24 * 3600 -
             (now_time.hour * 3600 + now_time.minute * 60 +
                 now_time.second);
@@ -256,7 +262,7 @@ class _HomePageState extends State<HomePage> {
         time_name = "Iftorlik vaqti";
         timeOfDay = _timeIftorlik;
 
-        time_vaqt = time.shomIftor.toString();
+        time_vaqt = time.xufton.toString();
         hour = _timeIftorlik.hour - now_time.hour;
         minute = _timeIftorlik.minute - now_time.minute
         ;
@@ -447,7 +453,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 12.0),
                                     child: Text(
-                                      time.tongSaharlik.toString(),
+                                      time.quyosh.toString(),
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -499,7 +505,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        time.quyosh.toString(),
+                                        time.peshin.toString(),
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold,
@@ -558,7 +564,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        time.peshin.toString(),
+                                        time.asr.toString(),
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold,
@@ -610,7 +616,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        time.asr.toString(), style: TextStyle(
+                                        time.shom.toString(), style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black45),),
@@ -672,7 +678,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        time.shomIftor.toString(), style: TextStyle(
+                                        time.xufton.toString(), style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.amber),),
@@ -723,7 +729,7 @@ class _HomePageState extends State<HomePage> {
                                       padding: const EdgeInsets.only(
                                           left: 12.0),
                                       child: Text(
-                                        time.hufton.toString(), style: TextStyle(
+                                        time.qamar.toString(), style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.yellowAccent),),

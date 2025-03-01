@@ -1,0 +1,314 @@
+{
+  "times": [
+    {
+      "Kun": "1",
+      "Bomdod": "Sha",
+      "Quyosh": "05:49",
+      "Peshin": "07:06",
+      "Asr": "12:49",
+      "Shom": "16:40",
+      "Xufton": "18:25",
+      "Qamar": "19:39"
+    },
+    {
+      "Kun": "2",
+      "Bomdod": "Ya",
+      "Quyosh": "05:47",
+      "Peshin": "07:05",
+      "Asr": "12:49",
+      "Shom": "16:41",
+      "Xufton": "18:27",
+      "Qamar": "19:40"
+    },
+    {
+      "Kun": "3",
+      "Bomdod": "Du",
+      "Quyosh": "05:46",
+      "Peshin": "07:03",
+      "Asr": "12:49",
+      "Shom": "16:42",
+      "Xufton": "18:28",
+      "Qamar": "19:41"
+    },
+    {
+      "Kun": "4",
+      "Bomdod": "Se",
+      "Quyosh": "05:44",
+      "Peshin": "07:02",
+      "Asr": "12:48",
+      "Shom": "16:43",
+      "Xufton": "18:29",
+      "Qamar": "19:43"
+    },
+    {
+      "Kun": "5",
+      "Bomdod": "Cho",
+      "Quyosh": "05:42",
+      "Peshin": "07:00",
+      "Asr": "12:48",
+      "Shom": "16:44",
+      "Xufton": "18:30",
+      "Qamar": "19:44"
+    },
+    {
+      "Kun": "6",
+      "Bomdod": "Pa",
+      "Quyosh": "05:41",
+      "Peshin": "06:58",
+      "Asr": "12:48",
+      "Shom": "16:45",
+      "Xufton": "18:31",
+      "Qamar": "19:45"
+    },
+    {
+      "Kun": "7",
+      "Bomdod": "Ju",
+      "Quyosh": "05:39",
+      "Peshin": "06:57",
+      "Asr": "12:48",
+      "Shom": "16:46",
+      "Xufton": "18:32",
+      "Qamar": "19:46"
+    },
+    {
+      "Kun": "8",
+      "Bomdod": "Sha",
+      "Quyosh": "05:38",
+      "Peshin": "06:55",
+      "Asr": "12:48",
+      "Shom": "16:46",
+      "Xufton": "18:34",
+      "Qamar": "19:47"
+    },
+    {
+      "Kun": "9",
+      "Bomdod": "Ya",
+      "Quyosh": "05:36",
+      "Peshin": "06:54",
+      "Asr": "12:47",
+      "Shom": "16:47",
+      "Xufton": "18:35",
+      "Qamar": "19:48"
+    },
+    {
+      "Kun": "10",
+      "Bomdod": "Du",
+      "Quyosh": "05:35",
+      "Peshin": "06:53",
+      "Asr": "12:47",
+      "Shom": "16:48",
+      "Xufton": "18:36",
+      "Qamar": "19:49"
+    },
+    {
+      "Kun": "11",
+      "Bomdod": "Se",
+      "Quyosh": "05:34",
+      "Peshin": "06:51",
+      "Asr": "12:47",
+      "Shom": "16:49",
+      "Xufton": "18:37",
+      "Qamar": "19:51"
+    },
+    {
+      "Kun": "12",
+      "Bomdod": "Cho",
+      "Quyosh": "05:32",
+      "Peshin": "06:50",
+      "Asr": "12:47",
+      "Shom": "16:50",
+      "Xufton": "18:38",
+      "Qamar": "19:52"
+    },
+    {
+      "Kun": "13",
+      "Bomdod": "Pa",
+      "Quyosh": "05:30",
+      "Peshin": "06:48",
+      "Asr": "12:46",
+      "Shom": "16:51",
+      "Xufton": "18:39",
+      "Qamar": "19:53"
+    },
+    {
+      "Kun": "14",
+      "Bomdod": "Ju",
+      "Quyosh": "05:28",
+      "Peshin": "06:46",
+      "Asr": "12:46",
+      "Shom": "16:52",
+      "Xufton": "18:40",
+      "Qamar": "19:54"
+    },
+    {
+      "Kun": "15",
+      "Bomdod": "Sha",
+      "Quyosh": "05:27",
+      "Peshin": "06:45",
+      "Asr": "12:46",
+      "Shom": "16:53",
+      "Xufton": "18:41",
+      "Qamar": "19:55"
+    },
+    {
+      "Kun": "16",
+      "Bomdod": "Ya",
+      "Quyosh": "05:25",
+      "Peshin": "06:43",
+      "Asr": "12:45",
+      "Shom": "16:54",
+      "Xufton": "18:42",
+      "Qamar": "19:56"
+    },
+    {
+      "Kun": "17",
+      "Bomdod": "Du",
+      "Quyosh": "05:23",
+      "Peshin": "06:41",
+      "Asr": "12:45",
+      "Shom": "16:55",
+      "Xufton": "18:44",
+      "Qamar": "19:57"
+    },
+    {
+      "Kun": "18",
+      "Bomdod": "Se",
+      "Quyosh": "05:21",
+      "Peshin": "06:40",
+      "Asr": "12:45",
+      "Shom": "16:55",
+      "Xufton": "18:45",
+      "Qamar": "19:58"
+    },
+    {
+      "Kun": "19",
+      "Bomdod": "Cho",
+      "Quyosh": "05:20",
+      "Peshin": "06:38",
+      "Asr": "12:45",
+      "Shom": "16:56",
+      "Xufton": "18:46",
+      "Qamar": "20:00"
+    },
+    {
+      "Kun": "20",
+      "Bomdod": "Pa",
+      "Quyosh": "05:20",
+      "Peshin": "06:38",
+      "Asr": "12:44",
+      "Shom": "16:56",
+      "Xufton": "18:46",
+      "Qamar": "20:00"
+    },
+    {
+      "Kun": "21",
+      "Bomdod": "Ju",
+      "Quyosh": "05:18",
+      "Peshin": "06:37",
+      "Asr": "12:44",
+      "Shom": "16:57",
+      "Xufton": "18:47",
+      "Qamar": "20:01"
+    },
+    {
+      "Kun": "22",
+      "Bomdod": "Sha",
+      "Quyosh": "05:16",
+      "Peshin": "06:35",
+      "Asr": "12:44",
+      "Shom": "16:58",
+      "Xufton": "18:48",
+      "Qamar": "20:02"
+    },
+    {
+      "Kun": "23",
+      "Bomdod": "Ya",
+      "Quyosh": "05:14",
+      "Peshin": "06:33",
+      "Asr": "12:43",
+      "Shom": "16:58",
+      "Xufton": "18:49",
+      "Qamar": "20:03"
+    },
+    {
+      "Kun": "24",
+      "Bomdod": "Du",
+      "Quyosh": "05:13",
+      "Peshin": "06:32",
+      "Asr": "12:43",
+      "Shom": "16:59",
+      "Xufton": "18:50",
+      "Qamar": "20:05"
+    },
+    {
+      "Kun": "25",
+      "Bomdod": "Se",
+      "Quyosh": "05:11",
+      "Peshin": "06:30",
+      "Asr": "12:43",
+      "Shom": "17:00",
+      "Xufton": "18:51",
+      "Qamar": "20:06"
+    },
+    {
+      "Kun": "26",
+      "Bomdod": "Cho",
+      "Quyosh": "05:09",
+      "Peshin": "06:28",
+      "Asr": "12:42",
+      "Shom": "17:01",
+      "Xufton": "18:52",
+      "Qamar": "20:07"
+    },
+    {
+      "Kun": "27",
+      "Bomdod": "Pa",
+      "Quyosh": "05:07",
+      "Peshin": "06:26",
+      "Asr": "12:42",
+      "Shom": "17:02",
+      "Xufton": "18:53",
+      "Qamar": "20:09"
+    },
+    {
+      "Kun": "28",
+      "Bomdod": "Ju",
+      "Quyosh": "05:05",
+      "Peshin": "06:25",
+      "Asr": "12:42",
+      "Shom": "17:02",
+      "Xufton": "18:55",
+      "Qamar": "20:10"
+    },
+    {
+      "Kun": "29",
+      "Bomdod": "Sha",
+      "Quyosh": "05:04",
+      "Peshin": "06:23",
+      "Asr": "12:42",
+      "Shom": "17:03",
+      "Xufton": "18:56",
+      "Qamar": "20:11"
+    },
+    {
+      "Kun": "30",
+      "Bomdod": "Ya",
+      "Quyosh": "05:02",
+      "Peshin": "06:21",
+      "Asr": "12:41",
+      "Shom": "17:03",
+      "Xufton": "18:56",
+      "Qamar": "20:11"
+    },
+    {
+      "Kun": "31",
+      "Bomdod": "Du",
+      "Quyosh": "05:00",
+      "Peshin": "06:20",
+      "Asr": "12:41",
+      "Shom": "17:04",
+      "Xufton": "18:57",
+      "Qamar": "20:13"
+    }
+  ]
+}
