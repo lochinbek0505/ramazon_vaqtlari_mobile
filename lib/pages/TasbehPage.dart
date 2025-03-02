@@ -74,7 +74,7 @@ class _TasbehPageState extends State<TasbehPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.indigoAccent,
         centerTitle: true,
         title: const Text("Tasbeh", style: TextStyle(color: Colors.white, fontSize: 25,fontWeight: FontWeight.bold)),
       ),
@@ -119,7 +119,7 @@ class _TasbehPageState extends State<TasbehPage>
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.indigoAccent,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     width: 50,
@@ -138,7 +138,7 @@ class _TasbehPageState extends State<TasbehPage>
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.indigoAccent,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
@@ -163,7 +163,7 @@ class _TasbehPageState extends State<TasbehPage>
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.indigoAccent,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Icon(Icons.vibration, color: Colors.white),

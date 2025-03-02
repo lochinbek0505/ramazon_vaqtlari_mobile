@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:namoz_time_mobile/pages/DuoPage.dart';
+import 'package:namoz_time_mobile/pages/FullCalendar.dart';
 
 import 'HomePage.dart';
 import 'QiblaPage.dart';
@@ -18,9 +19,9 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> pages = [
     HomePage(),
+    Fullcalendar(),
     Duopage(),
     TasbehPage(),
-    QiblaPage(),
   ];
 
   void onTap(int index) {
@@ -41,9 +42,9 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           Image.asset("assets/icon/home.png",width: 35,),
+          Image.asset("assets/icon/full_calendar.png",width: 30,),
           Image.asset("assets/icon/duo.png",width: 30,),
           Image.asset("assets/icon/tasbih.png", width: 30,),
-          Image.asset("assets/icon/qibla.png",width: 30,),
         ],
         onTap: onTap,
         backgroundColor: Colors.grey.shade100,

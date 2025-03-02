@@ -13,7 +13,7 @@ class _DuopageState extends State<Duopage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.indigoAccent,
         centerTitle: true,
         title: Text(
           "Duolar",

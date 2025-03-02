@@ -9,7 +9,7 @@
 
 
     <application
-        android:label="namoz_time_mobile"
+        android:label="Ramazon taqvimi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

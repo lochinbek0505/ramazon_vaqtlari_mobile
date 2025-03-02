@@ -5,11 +5,11 @@ import 'package:android_intent_plus/flag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:namoz_time_mobile/pages/LocatePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../model/namoz_model.dart';
-import 'FullCalendar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,9 +21,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //bu json dan o'qilgan to'liq ma'lumotni o'zida saqlaydi
   late NamozTimeModel model;
+  String locate = "";
   Future<String?> _loadSelection() async {
     final prefs = await SharedPreferences.getInstance();
     String? district = prefs.getString('selected_district');
+    return district;
+  }
+
+  Future<String?> _loadLocation() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? district = prefs.getString('locate');
     return district;
   }
   // ayni damdagi vaqtni o'zida saqlaydi
@@ -185,6 +192,11 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     //hozirgi sanani olyabman
     date = DateTime.now();
+    _loadLocation().then((value) {
+      setState(() {
+        locate = value!;
+      });
+    });
     //bu yerda json file dan o'girilgan data ni aniqlab olyabmiz
     getDataFromJson().then((_) {
       setState(() {
@@ -302,9 +314,8 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 10),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -318,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Samarqand",
+                        locate,
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -330,16 +341,15 @@ class _HomePageState extends State<HomePage> {
                   Spacer(),
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (builder) => Fullcalendar(),
+                          builder: (builder) => ProvincePage(),
                         ),
                       );
                     },
 
-                    icon: Icon(
-                      Icons.calendar_month, size: 24, color: Colors.white,),
-                  ),
+                    icon: Image.asset(
+                      "assets/icon/relocation.png", color: Colors.white,width: 30,height: 30,),),
                 ],
               ),
             ],

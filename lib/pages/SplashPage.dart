@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:namoz_time_mobile/pages/HomePage.dart';
 import 'package:namoz_time_mobile/pages/MainPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -74,8 +73,8 @@ class _SplashpageState extends State<Splashpage> {
             ),
             Spacer(),
             Text(
-              "Development by Lochinbek 2025",
-              style: TextStyle(color: Colors.white),
+              "©️ https://namozvaqti.uz/ dan foydalanildi",
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             SizedBox(height: 10),
           ],

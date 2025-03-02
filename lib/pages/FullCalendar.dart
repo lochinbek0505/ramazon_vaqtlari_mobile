@@ -33,6 +33,7 @@ class _FullcalendarState extends State<Fullcalendar> {
       path!,
     );
     setState(() {
+      check = true;
       var list = jsonDecode(data);
       model = NamozTimeModel.fromJson(list);
     });
@@ -64,9 +65,10 @@ class _FullcalendarState extends State<Fullcalendar> {
         title: Text(
           "To'liq ramazon taqvimi", style: TextStyle(color: Colors.white),),
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
+      body: check ? ListView.builder(itemBuilder: (context, index) {
         return RamadanTimeCard(time: model.timesList![index]);
-      }, itemCount: model.timesList!.length,),
+      }, itemCount: model.timesList!.length,) : Center(
+        child: CircularProgressIndicator(),),
     );
   }
 }

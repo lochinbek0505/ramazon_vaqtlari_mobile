@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namoz_time_mobile/pages/HomePage.dart';
+import 'package:namoz_time_mobile/pages/MainPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/ReadJsonModel.dart';
@@ -120,6 +120,10 @@ class ProvincePage extends StatelessWidget {
     await prefs.setString('selected_province', province);
   }
 
+  Future<void> _saveLocate(String province) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('locate', province);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,7 +154,7 @@ class ProvincePage extends StatelessWidget {
                 ),
                 onTap: () async {
                   await _saveProvince(provinceList[index].province);
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DistrictPage(provinceList[index]),
@@ -176,11 +180,23 @@ class DistrictPage extends StatelessWidget {
     await prefs.setString('selected_district', district);
   }
 
+  Future<void> _saveLocate(String province) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('locate', province);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProvincePage(),
+            ),
+          );
+        }, icon: Icon(Icons.arrow_back, color: Colors.white,)),
         backgroundColor: Colors.indigoAccent,
         title: Text(
           "Hududingizni tanlang",
@@ -203,9 +219,10 @@ class DistrictPage extends StatelessWidget {
                 ),
                 onTap: () async {
                   await _saveDistrict(province.list[index].path);
+                  await _saveLocate(province.list[index].name);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (builder) => HomePage()),
+                    MaterialPageRoute(builder: (builder) => MainPage()),
                   );
                 },
               ),
